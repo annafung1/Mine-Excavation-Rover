@@ -1,0 +1,47 @@
+
+// rover.proto
+
+syntax = "proto3";
+
+service RoverService{
+  rpc create_files(getMapRequest) returns (getMapResponse) {}
+  rpc rover_scrape(getMovesRequest) returns (getMovesResponse) {}
+  rpc farm_keys(getSerialNumRequest) returns (getSerialNumResponse) {}
+  rpc isAlive(isSuccessRequest) returns (isSuccessResponse){}
+  rpc  sendPin(PinRequest) returns (PinResponse){}
+
+}
+
+//getMap
+message getMapRequest{}
+
+message getMapResponse{
+  int32 row =1;
+  int32 col =2 ;
+  repeated  int32 moving_map =3;
+}
+
+//get moves
+message getMovesRequest{
+  int32 roverNum=1;
+}
+message getMovesResponse{
+  string move =1;
+}
+
+//get mine serial num
+message getSerialNumRequest{}
+
+message  getSerialNumResponse{
+  repeated string serial_num =1 ;
+  repeated string pin_num =2 ;
+}
+
+message isSuccessRequest{string success=1;}
+message isSuccessResponse{string confirm=1;}
+
+
+message PinRequest{string pin=1;}
+message PinResponse{string recv=1;}
+
+
